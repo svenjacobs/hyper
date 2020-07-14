@@ -21,7 +21,7 @@
     "file-uri-to-path": "2.0.0",
     "fs-extra": "9.0.1",
     "git-describe": "4.0.4",
-    "lodash": "4.17.15",
+    "lodash": "4.17.19",
     "mkdirp": "1.0.4",
     "ms": "2.1.2",
     "node-pty": "0.9.0",
@@ -33,7 +33,7 @@
     "react-dom": "16.13.1",
     "semver": "7.3.2",
     "shell-env": "3.0.0",
-    "uuid": "8.1.0"
+    "uuid": "8.2.0"
   },
   "optionalDependencies": {
     "native-reg": "0.3.4"

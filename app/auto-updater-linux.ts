@@ -21,18 +21,17 @@ class AutoUpdater extends EventEmitter implements Electron.AutoUpdater {
     this.emit('checking-for-update');
 
     fetch(this.updateURL)
-      .then((res): any => {
+      .then((res) => {
         if (res.status === 204) {
-          return this.emit('update-not-available');
+          this.emit('update-not-available');
+          return;
         }
-        // eslint-disable-next-line @typescript-eslint/camelcase
         return res.json().then(({name, notes, pub_date}) => {
           // Only name is mandatory, needed to construct release URL.
           if (!name) {
             throw new Error('Malformed server response: release name is missing.');
           }
           // If `null` is passed to Date constructor, current time will be used. This doesn't work with `undefined`
-          // eslint-disable-next-line @typescript-eslint/camelcase
           const date = new Date(pub_date || null);
           this.emit('update-available', {}, notes, name, date);
         });
@@ -40,7 +39,7 @@ class AutoUpdater extends EventEmitter implements Electron.AutoUpdater {
       .catch(this.emitError.bind(this));
   }
 
-  emitError(error: any) {
+  emitError(error: string | Error) {
     if (typeof error === 'string') {
       error = new Error(error);
     }
